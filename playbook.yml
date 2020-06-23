@@ -1,16 +1,22 @@
 - hosts: servers
   become: true
+
+  tasks:
+  - name: Disable SELinux
+    selinux:
+      state: disabled
+
   vars:
     tomcat_version: 9.0.36
     
     tomcat_permissions_production: True
     
     tomcat_users:
-      - username: "tomcat"
-        password: "t3mpp@ssw0rd"
+      - username: "admin"
+        password: "admin"
         roles: "tomcat,admin,manager,manager-gui"
-      - username: "exampleuser"
-        password: "us3rp@ssw0rd"
+      - username: "tomcat"
+        password: "tomcat"
         roles: "tomcat"        
   roles:
     - role: zaxos.tomcat-ansible-role
