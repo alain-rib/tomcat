@@ -1,4 +1,4 @@
-- hosts: servers
+- hosts: all
   become: true
 
   tasks:
@@ -14,9 +14,9 @@
     tomcat_users:
       - username: "admin"
         password: "admin"
-        roles: "tomcat,admin,manager,manager-gui"
+        roles: "tomcat,admin,manager,manager-gui,manager-script"
       - username: "tomcat"
         password: "tomcat"
-        roles: "tomcat"        
+        roles: "manager-gui,manager-script"        
   roles:
     - role: zaxos.tomcat-ansible-role
